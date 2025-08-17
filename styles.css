@@ -106,26 +106,26 @@ h3 {
 .menu-toggle {
   display: none;
   /* background-color: rgba(62, 88, 121, 0.9); */
-  padding: 10px 15px;
-  margin-right: 10px;
-  border-radius: 5px;
+  /* padding: 10px 15px; */
+  /* margin-right: 10px; */
+  /* border-radius: 5px; */
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: 1.5rem;
+  right: 2rem;
   z-index: 1001;
   cursor: pointer;
-  border: none;
-  transition: background-color 0.3s ease;
+  /* border: none; */
+  /* transition: background-color 0.3s ease; */
 }
 
 .menu-toggle i {
   color: #ffffff;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
-.menu-toggle:hover {
-  /* background-color: rgba(62, 88, 121, 1); */
-}
+/* .menu-toggle:hover {
+  background-color: rgba(62, 88, 121, 1); 
+} */
 
 /* === MOBILE MENU === */
 .mobile-menu {
@@ -243,12 +243,13 @@ h3 {
   font-size: 1.1rem;
   line-height: 1.8;
   color: #cccccc;
+  color: #ffffff;
   max-width: 100%;
 }
 
 .resume-button {
   display: inline-block;
-  margin-top: 3rem;
+  margin-top: 4rem;
   font-size: 1rem;
   color: #333;
   text-decoration: none;
@@ -389,7 +390,10 @@ h3 {
 .footer {
   width: 100%;
   text-align: center;
-  margin-top: 0.5rem;
+  padding: 10px 10;      
+  color: #ffffff;       
+  font-size: 0.9rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
@@ -403,4 +407,5 @@ h3 {
   margin: 3rem auto 4rem auto; 
   background: rgba(255, 255, 255, 0.15);
 }
+
 
