@@ -87,13 +87,13 @@
 
   }
   
-  /* Tablets Landscape & Small Laptops
+  /* Tablets Landscape & Small Laptops */
   @media (max-width: 1024px) {
-    .section { padding: 3rem 2rem; }
-  }
+    /* .section { padding: 3rem 2rem; } */
+  } 
   
-  /* Ultra-wide screens 
+  /* Ultra-wide screens */
   @media (min-width: 1441px) {
     .container { max-width: 1400px; margin: auto; }
   }
-   */
+  
