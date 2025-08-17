@@ -110,8 +110,8 @@ h3 {
   margin-right: 10px;
   border-radius: 5px;
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 1rem;
+  right: 1rem;
   z-index: 1001;
   cursor: pointer;
   border: none;
