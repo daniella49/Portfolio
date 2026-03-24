@@ -18,17 +18,10 @@ body {
   transition: opacity 0.5s ease-in-out;
 }
 
-
 @keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes fadeInUp {
@@ -76,11 +69,11 @@ h3 {
 /* === NAVBAR === */
 .navbar {
   width: 100%;
-  background-color: rgba(62, 88, 121, 0.9);
+  background-color: rgba(62, 88, 121, 0.95); 
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 10000; /* High z-index keeps it on top of sections */
   padding: 1rem 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -104,18 +97,12 @@ h3 {
 }
 
 .menu-toggle {
-  display: none;
-  /* background-color: rgba(62, 88, 121, 0.9); */
-  /* padding: 10px 15px; */
-  /* margin-right: 10px; */
-  /* border-radius: 5px; */
+  display: none; /* Hidden on desktop, triggered by media queries */
   position: fixed;
   top: 1.5rem;
   right: 2rem;
-  z-index: 1001;
+  z-index: 10001; /* Always renders above navbar and sections */
   cursor: pointer;
-  /* border: none; */
-  /* transition: background-color 0.3s ease; */
 }
 
 .menu-toggle i {
@@ -123,26 +110,21 @@ h3 {
   font-size: 2rem;
 }
 
-/* .menu-toggle:hover {
-  background-color: rgba(62, 88, 121, 1); 
-} */
-
 /* === MOBILE MENU === */
 .mobile-menu {
   display: none;
   flex-direction: column;
   list-style: none;
   text-align: center;
-  background-color: rgba(62, 88, 121, 0.9);
+  background-color: rgba(62, 88, 121, 0.95);
   padding: 0.5rem;
-  position: absolute;
-  top: 1.5rem;
+  position: fixed; 
+  top: 5rem; /* Pushes it down below the toggle button */
   right: 1.5rem;
-  transform: translateX(-50%);
   width: max-content;
-  min-width: 100px;
+  min-width: 150px;
   border-radius: 8px;
-  z-index: 999;
+  z-index: 9999; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   opacity: 0;
   visibility: hidden;
@@ -157,7 +139,8 @@ h3 {
   color: #ffffff;
   font-size: 1rem;
   text-decoration: none;
-  padding: 1rem 1rem;
+  padding: 0.8rem 1rem;
+  display: block; 
 }
 
 .mobile-menu li a:hover {
@@ -170,11 +153,12 @@ h3 {
   visibility: visible;
 }
 
-
 /* === HOME SECTION === */
 .home {
   min-height: 100vh;
-  padding: 1rem 2rem 1rem;
+  padding: 1rem 2rem;
+  position: relative; 
+  z-index: 1; 
 }
 
 .home h1 {
@@ -213,10 +197,9 @@ h3 {
 .home-content h1,
 .home-content p,
 .home-content .home-button {
-    opacity: 0;
-    transform: translateY(20px);
+  opacity: 0;
+  transform: translateY(20px);
 }
-
 
 /* === ABOUT SECTION === */
 .about {
@@ -226,9 +209,8 @@ h3 {
   flex-direction: column;
   align-items: flex-start;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0 auto 3rem auto;
   text-align: left;
-  margin-bottom: 3rem;
   scroll-margin-top: 100px;
 }
 
@@ -242,7 +224,6 @@ h3 {
 .about p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #cccccc;
   color: #ffffff;
   max-width: 100%;
 }
@@ -264,10 +245,10 @@ h3 {
   color: #fff;
 }
 
-
 /* === SKILLS SECTION === */
-.skills section {
-  margin: 3rem 0;
+
+.skills.section {
+  margin: 3rem auto;
   padding: 3rem 20px;
 }
 
@@ -390,8 +371,8 @@ h3 {
 .footer {
   width: 100%;
   text-align: center;
-  padding: 10px 10;      
-  color: #ffffff;       
+  padding: 10px 0; 
+  color: #ffffff;      
   font-size: 0.9rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -407,5 +388,3 @@ h3 {
   margin: 3rem auto 4rem auto; 
   background: rgba(255, 255, 255, 0.15);
 }
-
-

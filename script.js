@@ -1,76 +1,79 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // === YEAR UPDATE ===
-  document.getElementById("year").textContent = new Date().getFullYear();
+document.addEventListener("DOMContentLoaded", () => {
+  // === 1. FOOTER YEAR UPDATE ===
+  const yearSpan = document.getElementById("year");
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-  // === HOME SECTION ANIMATION ===
+
+  // === 2. SEQUENTIAL HOME FADE-IN (DRY Clean Code) ===
   const homeContent = document.querySelector(".home-content");
-  if (homeContent) {
-    const h1 = homeContent.querySelector("h1");
-    const p = homeContent.querySelector("p");
-    const button = homeContent.querySelector(".home-button");
 
-    function fadeInElement(element, delay) {
+  if (homeContent) {
+    const heroElements = [
+      homeContent.querySelector("h1"),
+      homeContent.querySelector("p"),
+      homeContent.querySelector(".home-button")
+    ];
+
+    const fadeInElement = (element, delay) => {
       if (!element) return;
       element.style.opacity = 0;
       element.style.transform = "translateY(20px)";
       element.style.transition = "opacity 1s ease, transform 1s ease";
+
       setTimeout(() => {
         element.style.opacity = 1;
         element.style.transform = "translateY(0)";
       }, delay);
-    }
+    };
 
-    fadeInElement(h1, 0);
-    fadeInElement(p, 1000);
-    fadeInElement(button, 2000);
+    // Loops through elements and staggers them automatically by 1 second each
+    heroElements.forEach((el, index) => fadeInElement(el, index * 1000));
   }
 
-  // === MOBILE MENU TOGGLE ===
+
+  // === 3. MOBILE MENU TOGGLE ===
   const menuToggle = document.getElementById("menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
 
   if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.toggle("active");
-    });
+    const toggleMenu = () => mobileMenu.classList.toggle("active");
+    const closeMenu = () => mobileMenu.classList.remove("active");
 
-    // Close mobile menu when clicking a link
-    mobileMenu.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.remove("active");
-      });
-    });
+    menuToggle.addEventListener("click", toggleMenu);
 
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", (event) => {
-      if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
-        mobileMenu.classList.remove("active");
+    // Close menu when clicking links or anywhere outside
+    mobileMenu.querySelectorAll("a").forEach(link => link.addEventListener("click", closeMenu));
+
+    document.addEventListener("click", (e) => {
+      if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+        closeMenu();
       }
     });
   }
 
-  // === RESIZE HANDLER: reset menu on desktop ===
+
+  // === 4. RESIZE HANDLER ===
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768 && mobileMenu) {
       mobileMenu.classList.remove("active");
     }
   });
 
-  // === SECTION FADE-IN OBSERVER ===
-  const observer = new IntersectionObserver((entries) => {
+
+  // === 5. INTERSECTION OBSERVER (Scroll Fade-ins) ===
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("fade-in");
-        observer.unobserve(entry.target); // animate only once
+        revealObserver.unobserve(entry.target); // Runs only once for performance
       }
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll(".section").forEach(section => {
-    observer.observe(section);
-  });
+  document.querySelectorAll(".section").forEach(section => revealObserver.observe(section));
 
-  // === "VIEW MY WORK" SCROLL BUTTON ===
+
+  // === 6. SMOOTH SCROLL FOR HERO ACTION BUTTON ===
   const viewButton = document.getElementById("view-my-work");
   const aboutSection = document.getElementById("about");
 
@@ -82,10 +85,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// === SCROLL RESTORATION ===
+// === 7. INITIAL PAGE SCROLL RESET ===
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
-window.onload = function () {
-  window.scrollTo(0, 0);
-};
+
+window.onload = () => window.scrollTo(0, 0);
